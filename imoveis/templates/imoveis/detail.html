@@ -1,0 +1,21 @@
+<h1> {{ build.address }} </h1>
+<h3> Data de Publicação: {{ build.pub_date }} </h3>
+<h3> Projeto: {{ build.project }} </h3>
+<h3> Status:
+{% if build.selling %}
+  À venda
+{% else %}
+  Vendido
+{% endif %}
+</h3>
+
+<ul>
+{% for picture in build.pictures.all %}
+  <li><img heigth="100" width="100" src="{{ picture.picture_file.url }}"></li>
+{% endfor %}
+</ul>
+
+{% for observation in build.observation_set.all %}
+  <p>{{ observation.description }}</p> 
+{% endfor %}
+
