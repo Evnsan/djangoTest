@@ -8,12 +8,13 @@ name = "pypi"
 [packages]
 
 "psycopg2" = "*"
-Django = "*"
+django = "*"
 gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
 django-favicon = "*"
-Pillow = "*"
+pillow = "*"
+django-db-file-storage = "*"
 
 
 [dev-packages]
