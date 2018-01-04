@@ -19,7 +19,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    url(r'admin/', admin.site.urls),
-    url(r'imoveis/', include('imoveis.urls')),
-    url(r'files/', include('db_file_storage.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^imoveis/', include('imoveis.urls')),
+    url(r'^files/', include('db_file_storage.urls')),
 ]
