@@ -1,0 +1,22 @@
+{% extends 'imoveis/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+  <h1> Adicionar observação </h1>
+
+  {% if error_message %}
+    <p><strong> {{ error_message }} </strong></p>
+  {% endif %}
+
+  <form
+     method="post"
+     enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit"> Enviar </button>
+  </form>
+
+{% endblock %}
