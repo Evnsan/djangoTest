@@ -15,6 +15,7 @@ whitenoise = "*"
 django-favicon = "*"
 pillow = "*"
 django-db-file-storage = "*"
+"django-bootstrap4" = "*"
 
 
 [dev-packages]
