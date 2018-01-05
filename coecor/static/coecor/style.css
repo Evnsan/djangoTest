@@ -1,0 +1,29 @@
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: #B25BEA;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+h2 {
+  color: #462863;
+  font-family: 'Indie Flower', cursive;
+}
+
+.pgh {
+    background-color: #246CCD;
+}
+
+.pgh h1,  .pgh h1 a:visited, .pgh h1 a:active {
+    color: #ffffff;
+    font-size: 50pt;
+    text-decoration: none;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  opacity: .5;
+  background-color: #000000;
+  color: #000000;
+}
