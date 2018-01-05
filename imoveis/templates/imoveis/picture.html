@@ -1,22 +1,5 @@
-{% extends 'imoveis/base.html' %}
+{% extends 'imoveis/forms.html' %}
 
-{% load static %}
-
-
-{% block content %}
-
-  <h1> Adicionar imagem </h1>
-  
-  {% if error_message %}
-    <p><strong> {{ error_message }} </strong></p>
-  {% endif %}
-  
-  <form
-     method="post"
-     enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit"> Enviar </button>
-  </form>
-
+{% block form_title %}
+  <h2> Adicionar imagem </h2>
 {% endblock %}
