@@ -1,9 +1,11 @@
-from django.urls import path 
+from django.conf.urls import url
 
 from . import views
 app_name = 'imoveis'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:build_id>/', views.detail, name='detail'),
-    path('<int:build_id>/picture', views.picture, name='picture'),
+    url(r'^$', views.index, name='index'),
+    url(r'^(?P<build_id>[0-9]+)/picture$', views.picture, name='picture'),
+    url(r'^(?P<build_id>[0-9]+)/', views.detail, name='detail'),
+    url('add_picture', views.add_picture, name='add_picture'),
+    url('add_observation', views.add_observation, name='add_observation'),
 ]

@@ -53,12 +53,17 @@ class PhoneNumber(models.Model):
         else:
             return str(self.number)
 
+class PictureFile(models.Model):
+    bytes = models.TextField()
+    filename = models.CharField(max_length=255)
+    mimetype = models.CharField(max_length=50)
+
 class Picture(models.Model):
     title = models.CharField(max_length=200)
-    FOLDER = 'pictures_folder/'
     picture_file = models.ImageField(
-        upload_to=FOLDER,
-        default=FOLDER + 'None/no-img.svg')
+        upload_to='imoveis.PictureFile/bytes/filename/mimetype',
+        blank = True,
+        null = True)
     def __str__(self):
         return self.title[:20]
 

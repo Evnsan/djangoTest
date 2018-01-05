@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from .models import Build
+from .forms import UploadPictureForm, ObservationForm
 
 # Create your views here.
 
@@ -19,6 +20,32 @@ def detail(request, build_id):
         'build': build,
     }
     return render(request, 'imoveis/detail.html', context);
+
+def add_observation(request):
+    if request.method == 'POST':
+        form = ObservationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/imoveis')
+    else:
+        form = ObservationForm()
+        context = {
+            'form': form,
+        }
+    return render(request, 'imoveis/observation.html', context);
+
+def add_picture(request):
+    if request.method == 'POST':
+        form = UploadPictureForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/imoveis')
+    else:
+        form = UploadPictureForm()
+        context = {
+            'form': form,
+        }
+    return render(request, 'imoveis/picture.html', context);
 
 def picture(request, build_id):
     return HttpResponse("picture of {}".format(build_id))

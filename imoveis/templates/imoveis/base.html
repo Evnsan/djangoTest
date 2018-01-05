@@ -1,0 +1,36 @@
+<html>
+  <head>
+  {% load static %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  {% load bootstrap4 %}
+	{# Load CSS and JavaScript #}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'coecor/style.css' %}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Berkshire+Swash"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="jumbotron pgh">
+      <h1><a href="/">Coecor Corretora</a></h1>
+    </div>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
