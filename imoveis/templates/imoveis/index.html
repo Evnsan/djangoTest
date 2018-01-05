@@ -1,9 +1,14 @@
-{% if latest_build_list %}
-  <ul>
-  {% for build in latest_build_list %}
-  <li> <a href="{% url 'imoveis:detail' build.id %}">{{ build.address }}</a></li>
-  {% endfor %}
-  </ul>
-{% else %}
-  <p> No builds are available </p>
-{% endif %}
+{% extends 'imoveis/base.html' %}
+{% block content %}
+  {% if latest_build_list %}
+    <ul class="list-group">
+    {% for build in latest_build_list %}
+    <li class="list-group-item">
+      <a href="{% url 'imoveis:detail' build.id %}">{{ build.address }}</a>
+    </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p> No builds are available </p>
+  {% endif %}
+{% endblock %}
