@@ -12,7 +12,7 @@ from .forms import UploadPictureForm, ObservationForm, OwnerForm, \
 def index(request):
     latest_build_list = Build.objects.order_by('pub_date')[:5]
     context = {
-        'latest_build_list': latest_build_list,
+        'build_list': latest_build_list,
     }
     return render(request, 'imoveis/index.html', context);
 
@@ -51,11 +51,24 @@ def add_form_mixin(request, form_class, template):
         }
     return render(request, template, context)
 
+def search(request):
+    if request.method == 'POST':
+        query = request.POST['query']
+        build_list = Build.objects.filter(address__icontains=query)
+    else:
+        query=''
+        build_list = Build.objects.order_by('pub_date')[:5]
+    context = {
+        'build_list': build_list,
+        'query': query,
+    }
+    return render(request, 'imoveis/search.html', context);
+
 class BuildList(ListView):
     model = Build
     paginate_by = 10
     template_name = 'imoveis/index.html'
-    context_object_name = 'latest_build_list'
+    context_object_name = 'build_list'
 
 class BuildDetail(DetailView):
     model = Build
