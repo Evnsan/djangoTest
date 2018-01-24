@@ -1,8 +1,8 @@
 {% extends 'imoveis/base.html' %}
 {% block content %}
-  {% if latest_build_list %}
+  {% if build_list %}
     <ul class="list-group">
-    {% for build in latest_build_list %}
+    {% for build in build_list %}
     <li class="list-group-item">
       <a href="{% url 'imoveis:detail' build.id %}">{{ build.address }}</a>
     </li>
