@@ -2,7 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 from .models import Build
-from .forms import UploadPictureForm, ObservationForm
+from .forms import UploadPictureForm, ObservationForm, OwnerForm, \
+                   PhoneNumberForm
+
 
 # Create your views here.
 
@@ -47,5 +49,24 @@ def add_picture(request):
         }
     return render(request, 'imoveis/picture.html', context);
 
+def add_owner(request):
+    return add_form_mixin(request, OwnerForm, 'imoveis/owner.html');
+
+def add_phonenumber(request):
+    return add_form_mixin(request, PhoneNumberForm, 'imoveis/phonenumber.html');
+
 def picture(request, build_id):
     return HttpResponse("picture of {}".format(build_id))
+
+def add_form_mixin(request, form_class, template):
+    if request.method == 'POST':
+        form = form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/imoveis')
+    else:
+        form = form_class()
+        context = {
+            'form': form,
+        }
+    return render(request, template, context)

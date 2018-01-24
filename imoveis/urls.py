@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^(?P<build_id>[0-9]+)/', views.detail, name='detail'),
     url('add_picture', views.add_picture, name='add_picture'),
     url('add_observation', views.add_observation, name='add_observation'),
+    url('add_owner', views.add_owner, name='add_owner'),
+    url('add_phonenumber', views.add_phonenumber, name='add_phonenumber'),
 ]
