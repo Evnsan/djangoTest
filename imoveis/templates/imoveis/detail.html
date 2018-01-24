@@ -1,67 +1,165 @@
 {% extends 'imoveis/base.html' %}
 
 {% block content %}
-  <h2> {{ build.address }} </h2>
-  <h3> Data de Publicação: {{ build.pub_date }} </h3>
-  <h3> Projeto: {{ build.project }} </h3>
-  <h3> Status:
-  {% if build.selling %}
-    À venda
-  {% else %}
-    Vendido
+  <div class='row pb-2'>
+    <h2> {{ build.address }} </h2>
+  </div>
+  <div class='row pb-2'>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+      <ul class="list-group">
+        <li class="list-group-item my-theme-l4">
+          Adicionade em: {{ build.pub_date }}
+        </li>
+        <li class="list-group-item my-theme-l4">
+          Projeto: {{ build.project }}
+        </li>
+        <li class="list-group-item my-theme-l4"> Status:
+          {% if build.selling %}
+          À venda
+          {% else %}
+          Vendido
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+
+  {% if build.pictures.all %}
+  <div class='row pb-2'>
+    <div class='col-md-3'>
+    </div>
+    <div id="picture-show" class="carousel slide col-md-6" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% for picture in build.pictures.all %}
+        {% if forloop.counter0 == 0 %}
+        <li data-target="#picture-show" data-slide-to="0" class="active"></li>
+        {% else %}
+        <li data-target="#picture-show" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+        {% endif %}
+        {% endfor %}
+      </ol>
+      <div class="carousel-inner">
+        {% for picture in build.pictures.all %}
+        {% if forloop.counter == 1 %}
+        <div class="carousel-item active">
+        {% else %}
+        <div class="carousel-item">
+        {% endif %}
+          <img style="width: 100%; height: 300px;" src="{{ picture.picture_file.url }}">
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#picture-show" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only" style="color: #000000;">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#picture-show" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class='col-md-3'>
+    </div>
+  </div>
   {% endif %}
-  </h3>
 
-	<div class='row'>
-		<div class='col-md-3'>
-		</div>
-		<div class='col-md-6'>
-			<div id="picture-show" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					{% for picture in build.pictures.all %}
-					{% if forloop.counter0 == 0 %}
-					<li data-target="#picture-show" data-slide-to="0" class="active"></li>
-					{% else %}
-					<li data-target="#picture-show" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-					{% endif %}
-					{% endfor %}
-				</ol>
-				<div class="carousel-inner">
-					{% for picture in build.pictures.all %}
-					{% if forloop.counter == 1 %}
-					<div class="carousel-item active">
-					{% else %}
-					<div class="carousel-item">
-					{% endif %}
-						<img style="width: 100%; height: 300px;" src="{{ picture.picture_file.url }}">
-					</div>
-					{% endfor %}
-				</div>
-				<a class="carousel-control-prev" href="#picture-show" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only" style="color: #000000;">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#picture-show" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
-		</div>
-		<div class='col-md-3'>
-		</div>
-	</div>
-
-	{% for observation in build.observation_set.all %}
-	<p>{{ observation.description }}</p>
-	{% endfor %}
-
-    <script>
-Holder.addTheme('gray', {
-  bg: '#777',
-  fg: 'rgba(255,255,255,.75)',
-  font: 'Helvetica',
-  fontweight: 'normal'
-})
-    </script>
-
-	{% endblock %}
+  <div class='row pb-2'>
+    <div class="col-md-1">
+    </div>
+    <div id='accordion' role='tablist' aria-multiselect-table='true' class='col-md-10'>
+      <div class='card'>
+        <div class='card-header' role='tab' id='details'>
+          <h5 class='mb-0'>
+            <a data-toggle='collapse' data-parent='#accordion'
+                href='#details_body' aria-expanded='false'>
+              Detalhes
+            </a>
+          </h5>
+        </div>
+        <div id='details_body' class='collapse hide' role='tabpanel'
+             aria-labelledby= 'detail'>
+          <div class='card-block'>
+            <ul class="list-group">
+              <li class="list-group-item my-theme-l4">
+                Idade: {{ build.age }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Tipo: {{ build.building_type }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Unidade: {{ build.unity }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Face:
+                {% if build.face == 'N' %} Norte
+                {% elif build.face == 'S' %} Sul
+                {% elif build.face == 'L' %} Leste
+                {% elif build.face == 'O' %} Oeste
+                {% endif %}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Vazio:
+                {% if build.empty %} Sim
+                {% else %} Não
+                {% endif %}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Valor de venda: R$ {{ build.selling_price }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                IPTU: R$ {{ build.iptu }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Tamanho: {{ build.square_meters }} m<sup>2</sup>
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Unidades por andar: {{ build.units_per_floor }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Zelador: {{ build.janitor_name }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Vagas na garagem: {{ build.parking_slots }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Banheiros: {{ build.bedrooms }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Lavabos: {{ build.washrooms }}
+              </li>
+              <li class="list-group-item my-theme-l4">
+                Suites: {{ build.suites }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class='card-header' role='tab' id='observations'>
+          <h5 class='mb-0'>
+            <a data-toggle='collapse' data-parent='#accordion'
+                href='#observations_body' aria-expanded='false'>
+              Observações
+            </a>
+          </h5>
+        </div>
+        <div id='observations_body' class='collapse hide' role='tabpanel'
+             aria-labelledby= 'observations'>
+          <div class='card-block'>
+            <ul class="list-group">
+              {% for observation in build.observation_set.all %}
+              <li class="list-group-item my-theme-l4">
+                {{ observation.description }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+  {% endblock %}
