@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-
+from django.views.generic import ListView, DetailView
 from .models import Build
 from .forms import UploadPictureForm, ObservationForm, OwnerForm, \
                    PhoneNumberForm
@@ -24,30 +24,10 @@ def detail(request, build_id):
     return render(request, 'imoveis/detail.html', context);
 
 def add_observation(request):
-    if request.method == 'POST':
-        form = ObservationForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/imoveis')
-    else:
-        form = ObservationForm()
-        context = {
-            'form': form,
-        }
-    return render(request, 'imoveis/observation.html', context);
+    return add_form_mixin(request, ObservationForm, 'imoveis/picture.html');
 
 def add_picture(request):
-    if request.method == 'POST':
-        form = UploadPictureForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/imoveis')
-    else:
-        form = UploadPictureForm()
-        context = {
-            'form': form,
-        }
-    return render(request, 'imoveis/picture.html', context);
+    return add_form_mixin(request, UploadPictureForm, 'imoveis/picture.html');
 
 def add_owner(request):
     return add_form_mixin(request, OwnerForm, 'imoveis/owner.html');
@@ -70,3 +50,14 @@ def add_form_mixin(request, form_class, template):
             'form': form,
         }
     return render(request, template, context)
+
+class BuildList(ListView):
+    model = Build
+    paginate_by = 10
+    template_name = 'imoveis/index.html'
+    context_object_name = 'latest_build_list'
+
+class BuildDetail(DetailView):
+    model = Build
+    template_name = 'imoveis/detail.html'
+    context_object_name = 'build'
