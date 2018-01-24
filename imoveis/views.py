@@ -54,7 +54,7 @@ def add_form_mixin(request, form_class, template):
 def search(request):
     if request.method == 'POST':
         query = request.POST['query']
-        build_list = Build.objects.filter(address__icontains=query)
+        build_list = Build.objects.filter(address__unaccent__icontains=query)
     else:
         query=''
         build_list = Build.objects.order_by('pub_date')[:5]
