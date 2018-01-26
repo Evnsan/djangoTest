@@ -80,7 +80,7 @@ class Build(models.Model):
     availability = models.BooleanField(choices=SELLING_CHOICES, default=True)
     age = models.PositiveIntegerField(default=0)
     building_type = models.CharField(max_length=200, blank=True)
-    unity = models.PositiveIntegerField(default=0)
+    unit = models.PositiveIntegerField(default=0)
     tower = models.CharField(max_length=200, blank=True)
     FACE_CHOICES = (('N','Norte'), ('S', 'Sul'), ('L', 'Leste'), ('O', 'Oest'))
     face = models.CharField(max_length=1, choices=FACE_CHOICES, default='S')
