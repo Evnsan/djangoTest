@@ -15,6 +15,11 @@
         <li class="list-group-item my-theme-l4">
           Projeto: {{ build.project }}
         </li>
+        {% if build.tower %}
+        <li class="list-group-item my-theme-l4">
+          Torre: {{ build.tower }}
+        </li>
+        {% endif %}
         <li class="list-group-item my-theme-l4"> Status:
           {% if build.availability %}
           À venda

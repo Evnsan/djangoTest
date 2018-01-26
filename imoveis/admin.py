@@ -14,7 +14,7 @@ class BuildAdmin(admin.ModelAdmin):
         (None, {'fields': [
             'pub_date', 'project', 'address', 'availability', 'age',
             'building_type', 'unity', 'face', 'empty', 'selling_price', 'iptu',
-            'square_meters', 'units_per_floor', 'janitor_name',
+            'square_meters', 'units_per_floor', 'janitor_name', 'tower',
             'parking_slots', 'bedrooms', 'washrooms', 'suites', 'features',
             'owners', 'pictures']})
     ]
