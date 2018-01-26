@@ -20,6 +20,7 @@ class Owner(models.Model):
 
 class PhoneNumber(models.Model):
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    note = models.CharField(max_length=200, blank=True, null=True)
     country_validator = RegexValidator(
         regex = r'^\+[\d\-\.]{1,6}$',
         message = "Um código de país pode ou não começar com um sinal de" +
