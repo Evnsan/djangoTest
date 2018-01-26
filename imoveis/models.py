@@ -97,7 +97,7 @@ class Build(models.Model):
     janitor_name = models.CharField(max_length=200, blank=True)
     parking_slots = models.PositiveIntegerField(default=0)
     bedrooms = models.PositiveIntegerField(default=0)
-    washrooms = models.PositiveIntegerField(default=0)
+    bathrooms = models.PositiveIntegerField(default=0)
     suites = models.PositiveIntegerField(default=0)
     features = models.ManyToManyField(Feature, blank=True)
     owners = models.ManyToManyField(Owner, blank=True)
