@@ -142,6 +142,16 @@
               <li class="list-group-item my-theme-l4">
                 Suites: {{ build.suites }}
               </li>
+              {% for owner in build.owners.all %}
+              <li class="list-group-item my-theme-l4">
+                <li class="list-group-item my-theme-l4">
+                  Proprietário: {{ owner }}
+                </li>
+                <li class="list-group-item my-theme-l4">
+                  Contato: {{ owner.email }}
+                </li>
+              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
