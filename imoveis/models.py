@@ -99,7 +99,7 @@ class Build(models.Model):
     pictures = models.ManyToManyField(Picture, blank=True)
 
     class Meta:
-        ordering = ["-address"]
+        ordering = ["address"]
 
     def __str__(self):
         return self.address
