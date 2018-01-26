@@ -72,6 +72,15 @@ class Picture(models.Model):
     def __str__(self):
         return self.title[:20]
 
+class District(models.Model):
+    name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name[:10]
+
+    class Meta:
+        ordering = ["name"]
+
 class Build(models.Model):
     pub_date = models.DateTimeField('data de cadastro')
     project = models.CharField(max_length=200, blank=True)
@@ -103,6 +112,8 @@ class Build(models.Model):
     features = models.ManyToManyField(Feature, blank=True)
     owners = models.ManyToManyField(Owner, blank=True, null=True)
     pictures = models.ManyToManyField(Picture, blank=True)
+    district =  models.ForeignKey(District, on_delete=models.SET_NULL,
+                                  blank=True, null=True)
 
     class Meta:
         ordering = ["address"]

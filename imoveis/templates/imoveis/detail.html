@@ -15,6 +15,11 @@
         <li class="list-group-item my-theme-l4">
           Projeto: {{ build.project }}
         </li>
+        {% if build.district %}
+        <li class="list-group-item my-theme-l4">
+          Bairro: {{ build.district }}
+        </li>
+        {% endif %}
         {% if build.tower %}
         <li class="list-group-item my-theme-l4">
           Torre: {{ build.tower }}

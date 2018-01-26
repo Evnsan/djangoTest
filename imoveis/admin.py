@@ -15,8 +15,8 @@ class BuildAdmin(admin.ModelAdmin):
             'pub_date', 'project', 'address', 'availability', 'age',
             'building_type', 'unit', 'face', 'empty', 'selling_price', 'iptu',
             'square_meters', 'units_per_floor', 'janitor_name', 'tower',
-            'owners', 'pictures', 'condominium_fee']})
             'parking_slots', 'bedrooms', 'bathrooms', 'suites', 'features',
+            'owners', 'pictures', 'district', 'condominium_fee']})
     ]
     inlines = [ObservationInline]
 
