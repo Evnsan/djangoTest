@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from .models import Build
 from .forms import UploadPictureForm, ObservationForm, OwnerForm, \
                    PhoneNumberForm
-
+from .dbdump.dump import make_dump, load_dump
 
 # Create your views here.
 
@@ -34,6 +34,18 @@ def add_owner(request):
 
 def add_phonenumber(request):
     return add_form_mixin(request, PhoneNumberForm, 'imoveis/phonenumber.html');
+
+def create_dump(request):
+    filename = make_dump()
+    return HttpResponse("Dump {} created!".format(filename))
+
+def upload_dump(request):
+    if request.method == 'POST':
+        filename = request.POST['filename']
+        load_dump(filename)
+        return HttpResponse("Done!")
+    context = {}
+    return render(request, 'imoveis/upload_dump.html', context);
 
 def picture(request, build_id):
     return HttpResponse("picture of {}".format(build_id))
