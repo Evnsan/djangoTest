@@ -101,7 +101,7 @@ class Build(models.Model):
     bathrooms = models.PositiveIntegerField(default=0)
     suites = models.PositiveIntegerField(default=0)
     features = models.ManyToManyField(Feature, blank=True)
-    owners = models.ManyToManyField(Owner, blank=True)
+    owners = models.ManyToManyField(Owner, blank=True, null=True)
     pictures = models.ManyToManyField(Picture, blank=True)
 
     class Meta:
