@@ -3,7 +3,8 @@ from django.utils.html import format_html
 
 # Register your models here.
 
-from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation
+from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation,\
+                    District
 
 class ObservationInline(admin.StackedInline):
     model = Observation
@@ -45,3 +46,4 @@ class PictureAdmin(admin.ModelAdmin):
 admin.site.register(Picture, PictureAdmin)
 admin.site.register(Feature)
 admin.site.register(Observation)
+admin.site.register(District)
