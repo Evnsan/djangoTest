@@ -1,0 +1,13 @@
+{% extends 'imoveis/base.html' %}
+{% block content %}
+  <div class='row pb-2'>
+    <div class='col-md-9'>
+      <form method='post' class='form'>
+        {% csrf_token %}
+        <input type='text' name='filename' placeholder='filename'>
+      </form>
+    </div>
+    <div class='col-md-3'>
+    </div>
+  </div>
+{% endblock %}
