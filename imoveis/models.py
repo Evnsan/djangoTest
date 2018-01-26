@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import RegexValidator
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
@@ -8,6 +9,9 @@ class Feature(models.Model):
     description = models.CharField(max_length=200)
     def __str__(self):
         return self.description
+
+    class Meta:
+        ordering = ["description"]
 
 class Owner(models.Model):
     name = models.CharField(max_length=200)
@@ -17,6 +21,7 @@ class Owner(models.Model):
 
 class PhoneNumber(models.Model):
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    note = models.CharField(max_length=200, blank=True, null=True)
     country_validator = RegexValidator(
         regex = r'^\+[\d\-\.]{1,6}$',
         message = "Um código de país pode ou não começar com um sinal de" +
@@ -67,34 +72,51 @@ class Picture(models.Model):
     def __str__(self):
         return self.title[:20]
 
+class District(models.Model):
+    name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name[:10]
+
+    class Meta:
+        ordering = ["name"]
+
 class Build(models.Model):
     pub_date = models.DateTimeField('data de cadastro')
     project = models.CharField(max_length=200, blank=True)
     address = models.CharField(max_length=200, blank=True)
     SELLING_CHOICES = ((True, 'à venda'), (False, 'vendido'))
-    selling = models.BooleanField(choices=SELLING_CHOICES, default=True)
+    availability = models.BooleanField(choices=SELLING_CHOICES, default=True)
     age = models.PositiveIntegerField(default=0)
     building_type = models.CharField(max_length=200, blank=True)
-    unity = models.PositiveIntegerField(default=0)
-    FACE_CHOICES = (('N','Norte'), ('S', 'Sul'), ('L', 'Leste'), ('O', 'Oest'))
-    face = models.CharField(max_length=1, choices=FACE_CHOICES, default='S')
+    unit = models.PositiveIntegerField(default=0)
+    tower = models.CharField(max_length=200, blank=True)
+    FACE_CHOICES = (('N','Norte'), ('S', 'Sul'), ('L', 'Leste'),
+                    ('O', 'Oeste'), ('-', 'Não informada'))
+    face = models.CharField(max_length=1, choices=FACE_CHOICES, default='-')
     EMPTY_CHOICES = ((True, 'Sim'), (False, 'Não'))
     empty =  models.BooleanField(choices=EMPTY_CHOICES, default=True)
-    selling_price = models.PositiveIntegerField(default=0)
-    iptu = models.PositiveIntegerField(default=0)
+    selling_price = MoneyField(max_digits=15, decimal_places=2,
+                             default_currency='BRL')
+    iptu = MoneyField(max_digits=8, decimal_places=2,
+                             default_currency='BRL')
+    condominium_fee = MoneyField(max_digits=8, decimal_places=2,
+                             default_currency='BRL')
     square_meters = models.PositiveIntegerField(default=0)
     units_per_floor = models.PositiveIntegerField(default=0, blank=True)
     janitor_name = models.CharField(max_length=200, blank=True)
     parking_slots = models.PositiveIntegerField(default=0)
     bedrooms = models.PositiveIntegerField(default=0)
-    washrooms = models.PositiveIntegerField(default=0)
+    bathrooms = models.PositiveIntegerField(default=0)
     suites = models.PositiveIntegerField(default=0)
     features = models.ManyToManyField(Feature, blank=True)
-    owners = models.ManyToManyField(Owner, blank=True)
+    owners = models.ManyToManyField(Owner, blank=True, null=True)
     pictures = models.ManyToManyField(Picture, blank=True)
+    district =  models.ForeignKey(District, on_delete=models.SET_NULL,
+                                  blank=True, null=True)
 
     class Meta:
-        ordering = ["-address"]
+        ordering = ["address"]
 
     def __str__(self):
         return self.address

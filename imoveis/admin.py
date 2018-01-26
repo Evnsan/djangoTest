@@ -12,11 +12,11 @@ class ObservationInline(admin.StackedInline):
 class BuildAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'pub_date', 'project', 'address', 'selling', 'age',
-            'building_type', 'unity', 'face', 'empty', 'selling_price', 'iptu',
-            'square_meters', 'units_per_floor', 'janitor_name',
-            'parking_slots', 'bedrooms', 'washrooms', 'suites', 'features',
-            'owners', 'pictures']})
+            'pub_date', 'project', 'address', 'availability', 'age',
+            'building_type', 'unit', 'face', 'empty', 'selling_price', 'iptu',
+            'square_meters', 'units_per_floor', 'janitor_name', 'tower',
+            'parking_slots', 'bedrooms', 'bathrooms', 'suites', 'features',
+            'owners', 'pictures', 'district', 'condominium_fee']})
     ]
     inlines = [ObservationInline]
 

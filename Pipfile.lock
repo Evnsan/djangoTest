@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a713e8147ad426c9520b286351844a24d5ade652e88255b7c8f9e45ba0b78f0d"
+            "sha256": "1f4549cb41430eaa810d714f89710e4435f9d2cb6873b04e51aab96dcfa36588"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -49,15 +49,22 @@
         },
         "django-db-file-storage": {
             "hashes": [
-                "sha256:8d35b054f8c678e8e1b7c43393ee26fb345e91ba8b45f29fefc39dbc104d8db4"
+                "sha256:4a4cdf809b3c90c51a7193f6a2ad09faf25c49ffed4376f0b877afd2c20dbcfa"
             ],
-            "version": "==0.4.5"
+            "version": "==0.4.6"
         },
         "django-favicon": {
             "hashes": [
                 "sha256:6b2783fceef91c0e0111c0675f87bb80bf381ec00f0c13e52458a032adda1421"
             ],
             "version": "==0.1.3"
+        },
+        "django-money": {
+            "hashes": [
+                "sha256:099bc28ebc2dc6a550b57376d54eea624f4145c72918a96fd75d93f7b9a08143",
+                "sha256:2614ebaad93487d20e21306ac17fe518e13db4e91b175a6a2dbe7342f4bba1af"
+            ],
+            "version": "==0.12.3"
         },
         "gunicorn": {
             "hashes": [
@@ -147,6 +154,13 @@
                 "sha256:5c3213be557d0468f9df8fe2487eaf2990d9799202c5ff5cb8d394d09fad9b2a"
             ],
             "version": "==2.7.3.2"
+        },
+        "py-moneyed": {
+            "hashes": [
+                "sha256:0c5dc04f77f1e0a123df051cc6ddc79267a48c612cb2d3dcfe7eb88cfc395bf9",
+                "sha256:f8c04183fd65d307a4b59f4a68332d3b9418d668b2a36cedd531f9cd1eb98933"
+            ],
+            "version": "==0.7.0"
         },
         "pytz": {
             "hashes": [
