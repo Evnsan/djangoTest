@@ -90,6 +90,8 @@ class Build(models.Model):
                              default_currency='BRL')
     iptu = MoneyField(max_digits=8, decimal_places=2,
                              default_currency='BRL')
+    condominium_fee = MoneyField(max_digits=8, decimal_places=2,
+                             default_currency='BRL')
     square_meters = models.PositiveIntegerField(default=0)
     units_per_floor = models.PositiveIntegerField(default=0, blank=True)
     janitor_name = models.CharField(max_length=200, blank=True)

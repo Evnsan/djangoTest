@@ -16,7 +16,7 @@ class BuildAdmin(admin.ModelAdmin):
             'building_type', 'unity', 'face', 'empty', 'selling_price', 'iptu',
             'square_meters', 'units_per_floor', 'janitor_name', 'tower',
             'parking_slots', 'bedrooms', 'washrooms', 'suites', 'features',
-            'owners', 'pictures']})
+            'owners', 'pictures', 'condominium_fee']})
     ]
     inlines = [ObservationInline]
 
