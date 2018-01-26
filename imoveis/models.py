@@ -82,8 +82,9 @@ class Build(models.Model):
     building_type = models.CharField(max_length=200, blank=True)
     unit = models.PositiveIntegerField(default=0)
     tower = models.CharField(max_length=200, blank=True)
-    FACE_CHOICES = (('N','Norte'), ('S', 'Sul'), ('L', 'Leste'), ('O', 'Oest'))
-    face = models.CharField(max_length=1, choices=FACE_CHOICES, default='S')
+    FACE_CHOICES = (('N','Norte'), ('S', 'Sul'), ('L', 'Leste'),
+                    ('O', 'Oeste'), ('-', 'Não informada'))
+    face = models.CharField(max_length=1, choices=FACE_CHOICES, default='-')
     EMPTY_CHOICES = ((True, 'Sim'), (False, 'Não'))
     empty =  models.BooleanField(choices=EMPTY_CHOICES, default=True)
     selling_price = MoneyField(max_digits=15, decimal_places=2,
