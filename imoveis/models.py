@@ -86,8 +86,10 @@ class Build(models.Model):
     face = models.CharField(max_length=1, choices=FACE_CHOICES, default='S')
     EMPTY_CHOICES = ((True, 'Sim'), (False, 'Não'))
     empty =  models.BooleanField(choices=EMPTY_CHOICES, default=True)
-    selling_price = models.PositiveIntegerField(default=0)
-    iptu = models.PositiveIntegerField(default=0)
+    selling_price = MoneyField(max_digits=15, decimal_places=2,
+                             default_currency='BRL')
+    iptu = MoneyField(max_digits=8, decimal_places=2,
+                             default_currency='BRL')
     square_meters = models.PositiveIntegerField(default=0)
     units_per_floor = models.PositiveIntegerField(default=0, blank=True)
     janitor_name = models.CharField(max_length=200, blank=True)
