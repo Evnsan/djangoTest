@@ -75,7 +75,7 @@ class Build(models.Model):
     project = models.CharField(max_length=200, blank=True)
     address = models.CharField(max_length=200, blank=True)
     SELLING_CHOICES = ((True, 'à venda'), (False, 'vendido'))
-    selling = models.BooleanField(choices=SELLING_CHOICES, default=True)
+    availability = models.BooleanField(choices=SELLING_CHOICES, default=True)
     age = models.PositiveIntegerField(default=0)
     building_type = models.CharField(max_length=200, blank=True)
     unity = models.PositiveIntegerField(default=0)

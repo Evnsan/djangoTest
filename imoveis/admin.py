@@ -12,7 +12,7 @@ class ObservationInline(admin.StackedInline):
 class BuildAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'pub_date', 'project', 'address', 'selling', 'age',
+            'pub_date', 'project', 'address', 'availability', 'age',
             'building_type', 'unity', 'face', 'empty', 'selling_price', 'iptu',
             'square_meters', 'units_per_floor', 'janitor_name',
             'parking_slots', 'bedrooms', 'washrooms', 'suites', 'features',
