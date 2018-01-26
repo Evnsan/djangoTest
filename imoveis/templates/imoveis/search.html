@@ -1,21 +1,25 @@
 {% extends 'imoveis/base.html' %}
 {% block content %}
   <div class='row pb-2'>
-    <div class='col-md-4'>
-      {% if query %}
-        <h4> Resultados da busca por:</h4>
-        '{{ query }}'
-      {% endif %}
-    </div>
-    <div class='col-md-6'>
+    <div class='col-md-9'>
       <form method='post' class='form'>
         {% csrf_token %}
-        <input type='text' name='query' value="{{ query }}">
+        <input type='text' name='query' placeholder='pesquisar' value={{ query}}>
       </form>
     </div>
-    <div class='col-md-2'>
+    <div class='col-md-3'>
     </div>
   </div>
+  {% if query %}
+  <div class='row pb-2'>
+    <div class='col-md-9'>
+    <h4> Resultados da busca por:</h4>
+    '{{ query }}'
+    </div>
+    <div class='col-md-3'>
+    </div>
+  </div>
+  {% endif %}
   <div class='row pb-2'>
     <div class='col-md-12'>
       {% if build_list %}
@@ -27,7 +31,7 @@
         {% endfor %}
         </ul>
       {% else %}
-        <p> No builds are available </p>
+        <p> Nenhum imóvel encontrado </p>
       {% endif %}
     </div>
   </div>
