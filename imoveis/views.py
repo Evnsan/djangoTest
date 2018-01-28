@@ -46,7 +46,12 @@ def add_phonenumber(request):
 @login_required
 def create_dump(request):
     filename = make_dump()
-    return HttpResponse("Dump {} created!".format(filename))
+    resp =  HttpResponse("Dump {} created!".format(filename))
+    with open(filename, 'rb') as tmp:
+        resp = HttpResponse(tmp, content_type='application/zip')
+        resp['Content-Disposition'] = 'attachment; filename={}'.format(
+            filename)
+    return resp
 
 @login_required
 def upload_dump(request):
