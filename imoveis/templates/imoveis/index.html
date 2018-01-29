@@ -1,14 +1,10 @@
 {% extends 'imoveis/base.html' %}
 {% block content %}
-  {% if build_list %}
-    <ul class="list-group">
-    {% for build in build_list %}
-    <li class="list-group-item">
-      <a href="{% url 'imoveis:detail' build.id %}">{{ build.address }}</a>
-    </li>
-    {% endfor %}
-    </ul>
+  {% if request.user.username %}
+  Bem vindo {{ request.user.username }}
   {% else %}
-    <p> No builds are available </p>
+  <a href="{% url 'admin:login' %}?next={% url 'imoveis:index'%}">
+    Você ainda precisa se identificar
+  </a>
   {% endif %}
 {% endblock %}
