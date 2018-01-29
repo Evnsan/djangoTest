@@ -11,11 +11,8 @@ from .dbdump.dump import make_dump, load_dump
 
 # Create your views here.
 
-@login_required
 def index(request):
-    latest_build_list = Build.objects.order_by('pub_date')[:5]
     context = {
-        'build_list': latest_build_list,
     }
     return render(request, 'imoveis/index.html', context);
 
