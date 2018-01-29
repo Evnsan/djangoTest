@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^imoveis/', include('imoveis.urls')),
     url(r'^files/', include('db_file_storage.urls')),
+    url(r'^.*$', RedirectView.as_view(pattern_name='imoveis:index'))
 ]
