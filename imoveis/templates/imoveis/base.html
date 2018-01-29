@@ -78,7 +78,13 @@
     {% endblock %}
     </div>
     <nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-bottom">
+      {% if request.user.username %}
+      <a class="navbar-brand" href="{% url 'admin:logout' %}">
+        Desconectar ({{ request.user.username }})
+      </a>
+      {% else %}
       <a class="navbar-brand" href="{% url 'imoveis:index' %}">Coecor</a>
+      {% endif %}
       <ul class='navbar-nav'>
         <li class='nav-item'>
           <a class='nav-link' href="{% url 'admin:index' %}">
