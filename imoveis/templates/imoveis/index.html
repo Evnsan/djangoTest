@@ -1,7 +1,7 @@
 {% extends 'imoveis/base.html' %}
 {% block content %}
   {% if request.user.username %}
-  Bem vindo {{ request.user.username }}
+  Bem-vindo {{ request.user.username }}
   {% else %}
   <a href="{% url 'admin:login' %}?next={% url 'imoveis:index'%}">
     Você ainda precisa se identificar
