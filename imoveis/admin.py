@@ -1,13 +1,23 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django import forms
 
 # Register your models here.
 
 from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation,\
                     District
 
+class ObservationAdminForm(forms.ModelForm):
+    class Meta:
+        model = Observation
+        fields = ['description']
+        widgets = {
+            'description' : forms.Textarea
+        }
+
 class ObservationInline(admin.StackedInline):
     model = Observation
+    form = ObservationAdminForm
     extra = 1
 
 class BuildAdmin(admin.ModelAdmin):
