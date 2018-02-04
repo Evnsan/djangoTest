@@ -1,23 +1,33 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django import forms
 
 # Register your models here.
 
 from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation,\
                     District
 
+class ObservationAdminForm(forms.ModelForm):
+    class Meta:
+        model = Observation
+        fields = ['description']
+        widgets = {
+            'description' : forms.Textarea
+        }
+
 class ObservationInline(admin.StackedInline):
     model = Observation
+    form = ObservationAdminForm
     extra = 1
 
 class BuildAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'pub_date', 'project', 'address', 'district', 'availability',
-            'age', 'building_type', 'unit', 'face', 'empty', 'selling_price',
-            'iptu', 'condominium_fee', 'square_meters', 'units_per_floor',
-            'janitor_name', 'tower', 'parking_slots', 'bedrooms', 'bathrooms',
-            'suites', 'features', 'owners', 'pictures']})
+            'pub_date', 'project', 'address', 'tower', 'district',
+            'availability', 'age', 'building_type', 'unit', 'face', 'empty',
+            'selling_price', 'iptu', 'condominium_fee', 'square_meters',
+            'units_per_floor', 'janitor_name', 'parking_slots', 'bedrooms',
+            'bathrooms', 'suites', 'features', 'owners', 'pictures']})
     ]
     inlines = [ObservationInline]
 
