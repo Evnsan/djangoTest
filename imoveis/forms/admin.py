@@ -17,5 +17,6 @@ class BuildForm(forms.ModelForm):
         model = Build
         exclude = []
         widgets = {
-                'features': BootstrapedCheckboxSelectMultiple()
+                'features': BootstrapedCheckboxSelectMultiple(),
+                'owners': BootstrapedCheckboxSelectMultiple()
         }
