@@ -98,8 +98,8 @@ class Build(models.Model):
                                verbose_name='empreendimento')
     address = models.CharField(max_length=200, blank=True,
                                verbose_name='endereço')
-    district =  models.ForeignKey(District, on_delete=models.SET_NULL,
-                                  blank=True, null=True, verbose_name='Bairro')
+    district =  models.ManyToManyField(District, blank=True,
+                                       verbose_name='Bairro')
     SELLING_CHOICES = ((True, 'à venda'), (False, 'vendido'))
     availability = models.BooleanField(choices=SELLING_CHOICES, default=True,
                                        verbose_name='disponibilidade')
@@ -139,7 +139,7 @@ class Build(models.Model):
     suites = models.PositiveIntegerField(default=0, verbose_name='suites')
     features = models.ManyToManyField(Feature, blank=True,
                                       verbose_name='Atributos')
-    owners = models.ManyToManyField(Owner, blank=True, null=True,
+    owners = models.ManyToManyField(Owner, blank=True,
                                     verbose_name='Proprietários')
     pictures = models.ManyToManyField(Picture, blank=True,
                                       verbose_name='Figuras')
