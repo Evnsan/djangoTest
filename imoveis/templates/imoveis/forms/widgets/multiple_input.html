@@ -6,7 +6,7 @@
     <ul{% if id %} id="{{ id }}_{{ index }}"{% endif %} class="list-group">
   {% endif %}
   {% for option in options %}
-    <li class="list-group-item col-xs-6 col-sm-4 col-md-4">
+    <li class="list-group-item col-xs-12 col-sm-6 col-md-4">
       {% include option.template_name with widget=option %}
     </li>{% endfor %}
   {% if group %}
