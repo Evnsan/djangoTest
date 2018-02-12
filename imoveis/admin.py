@@ -1,24 +1,16 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django import forms
-
 from django.utils.translation import ugettext_lazy
 
+from .forms.admin import BuildForm, ObservationAdminForm
 from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation,\
                     District
-
-class ObservationAdminForm(forms.ModelForm):
-    class Meta:
-        model = Observation
-        fields = ['description']
-        widgets = {
-            'description' : forms.Textarea
-        }
 
 class ObservationInline(admin.StackedInline):
     model = Observation
     form = ObservationAdminForm
     extra = 1
+
 
 class BuildAdmin(admin.ModelAdmin):
     fieldsets = [
