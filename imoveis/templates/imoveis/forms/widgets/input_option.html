@@ -1,0 +1,15 @@
+{% if wrap_label %}
+  <label{% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %} style="margin-left:3em;">
+{% endif %}
+  <input type="{{ widget.type }}" name="{{ widget.name }}"
+    {% if widget.value != None %}
+      value="{{ widget.value|stringformat:'s' }}"
+    {% endif %}
+    {% if widget.selected is not False %}
+        checked
+    {% endif %}
+  />
+{% if wrap_label %}
+    {{ widget.label }}
+  </label>
+{% endif %}

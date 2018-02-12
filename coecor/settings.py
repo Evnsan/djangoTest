@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'imoveis.apps.ImoveisConfig',
     'db_file_storage',
     'bootstrap4',
+    'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

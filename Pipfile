@@ -17,6 +17,7 @@ pillow = "*"
 django-db-file-storage = "*"
 "django-bootstrap4" = "*"
 django-money = "*"
+bootstrap-admin = "*"
 
 
 [dev-packages]

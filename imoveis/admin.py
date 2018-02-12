@@ -1,24 +1,16 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django import forms
+from django.utils.translation import ugettext_lazy
 
-# Register your models here.
-
+from .forms.admin import BuildForm, ObservationAdminForm
 from .models import Build, Picture, PhoneNumber, Owner, Feature, Observation,\
                     District
-
-class ObservationAdminForm(forms.ModelForm):
-    class Meta:
-        model = Observation
-        fields = ['description']
-        widgets = {
-            'description' : forms.Textarea
-        }
 
 class ObservationInline(admin.StackedInline):
     model = Observation
     form = ObservationAdminForm
     extra = 1
+
 
 class BuildAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -30,6 +22,7 @@ class BuildAdmin(admin.ModelAdmin):
             'bathrooms', 'suites', 'features', 'owners', 'pictures']})
     ]
     inlines = [ObservationInline]
+    form = BuildForm
 
 admin.site.register(Build, BuildAdmin)
 
@@ -57,3 +50,9 @@ admin.site.register(Picture, PictureAdmin)
 admin.site.register(Feature)
 admin.site.register(Observation)
 admin.site.register(District)
+
+admin.site.site_title = ugettext_lazy('Coecor admin')
+# Text to put in each page's <h1> (and above login form).
+admin.site.site_header = ugettext_lazy('Administração')
+# Text to put at the top of the admin index page.
+admin.site.index_title = ugettext_lazy('Administração do site')

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Build
-from .forms import UploadPictureForm, ObservationForm, OwnerForm, \
+from .forms.forms import UploadPictureForm, ObservationForm, OwnerForm, \
                    PhoneNumberForm
 from .dbdump.dump import make_dump, load_dump
 

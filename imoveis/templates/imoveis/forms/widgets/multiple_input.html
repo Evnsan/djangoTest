@@ -1,0 +1,15 @@
+{% with id=widget.attrs.id %}
+<ul{% if id %} id="{{ id }}"{% endif %}{% if widget.attrs.class %} class="list-group row"{% endif %}>
+  {% for group, options, index in widget.optgroups %}
+  {% if group %}
+  <li class="list-group-item">{{ group }}
+    <ul{% if id %} id="{{ id }}_{{ index }}"{% endif %} class="list-group">
+  {% endif %}
+  {% for option in options %}
+    <li class="list-group-item col-xs-6 col-sm-4 col-md-4">
+      {% include option.template_name with widget=option %}
+    </li>{% endfor %}
+  {% if group %}
+  </ul>
+  </li>{% endif %}{% endfor %}
+</ul>{% endwith %}
