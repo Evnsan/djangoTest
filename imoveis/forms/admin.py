@@ -10,3 +10,12 @@ class ObservationAdminForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea
         }
+
+
+class BuildForm(forms.ModelForm):
+    class Meta:
+        model = Build
+        exclude = []
+        widgets = {
+                'features': BootstrapedCheckboxSelectMultiple()
+        }

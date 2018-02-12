@@ -22,6 +22,7 @@ class BuildAdmin(admin.ModelAdmin):
             'bathrooms', 'suites', 'features', 'owners', 'pictures']})
     ]
     inlines = [ObservationInline]
+    form = BuildForm
 
 admin.site.register(Build, BuildAdmin)
 
