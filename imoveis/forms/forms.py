@@ -1,5 +1,5 @@
 from django import forms
-from .models import Picture, Observation, Owner, PhoneNumber
+from ..models import Picture, Observation, Owner, PhoneNumber
 
 class UploadPictureForm(forms.ModelForm):
     class Meta:
